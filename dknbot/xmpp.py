@@ -21,7 +21,10 @@ class XMPPHandler(xmpp_handlers.CommandHandler):
     def text_message(self, message):
         """Act like a echo server"""
         
-        message.reply(message.body[::-1])
+        if message.body[0:4] == "ping":
+            message.reply("pong")
+        else:
+            message.reply(message.body[::-1])
     
     def help_command(self, message):
         """Help command"""
